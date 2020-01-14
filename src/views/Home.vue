@@ -8,7 +8,7 @@
    <ul>
       <li v-on:click="joinroom(room.roomid)"  v-for="room in rooms">{{ room.roomid }} -- {{ room.users}} </li>
   </ul>
-  <button v-on:click="pewpew">try</button>
+  <button v-on:click="CreateNewRoom">Make room</button>
   </div>
 </template>
 
@@ -26,8 +26,8 @@ export default {
     }
   },
   methods:{
-    pewpew:function(){
-      console.log(this.rooms)
+    CreateNewRoom:function(){
+      socket.emit('CreateNewRoom');
     },
     updatearray:function(data){
       this.rooms=data;
@@ -59,7 +59,7 @@ export default {
   created(){
     this.socketlisten()
     this.gamestart()
-    this.askStartingHand()
+    //this.askStartingHand()
     this.receiveStartingHand()
   }
 }

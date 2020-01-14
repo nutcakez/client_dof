@@ -37,6 +37,11 @@
         </div>
         <div id="stats">
             <div class="columns">
+            Player2 <br>
+            Gold:{{player2.gold}} <br>
+            Life:{{player2.life}} <br>
+            Deck:{{player2.deck}} <br>
+            Graveyard:{{player2.graveyard}}
             </div>
             <div class="columns">
 
@@ -71,14 +76,20 @@ export default {
                     1:'gray',
                     2:'gray'},
             selected:[],
-            stats:{},
             cards:cardbase,
             hand:[0,1,2],
             life:20,
             gold:5,
             loadbar:100,
             timer:'',
-            ownid:''
+            ownid:'',
+            player2:{
+                gold:5,
+                life:20,
+                deck:3,
+                graveyard:3
+            }
+
         }
     },
     methods: {
@@ -188,8 +199,14 @@ export default {
         },
         playerstats:function(){
             socket.socket.on('status',data=>{
-                console.log(data)
-                this.stats=data
+                Object.keys(data).forEach(key=>{
+                    if(key!=socket.socket.id){
+                        this.player2.gold=data[key].Gold
+                        this.player2.life=data[key].Life
+                        this.player2.graveyard=data[key].Graveyard
+                        this.player2.deck=data[key].Deck
+                    }
+                })
             })
         },
         setOwnID:function(){
@@ -210,6 +227,10 @@ export default {
     width: 33.33%;
     float:left;
     height:100%;
+}
+
+h3{
+    margin:0px;
 }
 
 #responsebutton{
