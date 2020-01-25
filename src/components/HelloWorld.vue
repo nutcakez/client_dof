@@ -80,6 +80,8 @@ export default {
             hand:[0,1,2],
             life:20,
             gold:5,
+            deck:3,
+            graveyard:0,
             loadbar:100,
             timer:'',
             ownid:'',
@@ -160,6 +162,11 @@ export default {
                 if(this.round=='Fight')
                 {
                     this.hand=data
+                    this.loadbar=100
+                        clearInterval(this.timer)
+                        this.timer=setInterval(()=>{
+                            this.loadbar--
+                        },120)
                 }
                 else
                 {
@@ -173,7 +180,7 @@ export default {
                         clearInterval(this.timer)
                         this.timer=setInterval(()=>{
                             this.loadbar--
-                        },60)
+                        },120)
                     },1000)
                 }
                 
@@ -192,7 +199,7 @@ export default {
                     clearInterval(this.timer)
                     this.timer=setInterval(()=>{
                     this.loadbar--
-                    },60)
+                    },120)
                 },1000)
                 
             })
@@ -205,6 +212,13 @@ export default {
                         this.player2.life=data[key].Life
                         this.player2.graveyard=data[key].Graveyard
                         this.player2.deck=data[key].Deck
+                    }
+                    else
+                    {
+                        this.life=data[key].Life
+                        this.gold=data[key].Gold
+                        this.graveyard=data[key].Graveyard
+                        this.deck=data[key].Deck
                     }
                 })
             })

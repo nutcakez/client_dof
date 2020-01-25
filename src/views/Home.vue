@@ -39,8 +39,8 @@ export default {
       })
     },
     gamestart:function(){
-      socket.on('gamestart',function(){
-        window.location.href = "http://localhost:8080/#/test"
+      socket.on('gamestart',()=>{
+        this.$router.push({name:'HelloWorld'})
       })
     },
     joinroom:function(roomID){
