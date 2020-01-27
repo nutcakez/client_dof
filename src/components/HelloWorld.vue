@@ -206,6 +206,7 @@ export default {
         },
         playerstats:function(){
             socket.socket.on('status',data=>{
+                console.log(data)
                 Object.keys(data).forEach(key=>{
                     if(key!=socket.socket.id){
                         this.player2.gold=data[key].Gold
