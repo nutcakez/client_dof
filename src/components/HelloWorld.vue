@@ -60,6 +60,7 @@
             <div class="columns">
                 
             </div>
+            <button v-on:click="surrender">Surrender</button>
         </div>
     </div>
 
@@ -226,6 +227,16 @@ export default {
         },
         setOwnID:function(){
             this.ownid=socket.socket.id
+        },
+        victory:function(){
+            socket.socket.on('victory',data=>{
+                alert("You win!")
+                this.$router.go('/')
+            })
+        },
+        surrender:function(){
+            console.log('sent surrender')
+            socket.socket.emit('surrender')
         }
 
     },
@@ -234,6 +245,7 @@ export default {
         this.buyhandle()
         this.setOwnID()
         this.playerstats()
+        this.victory()
     }
 }
 </script>
