@@ -122,25 +122,53 @@ export default {
             setTimeout(()=>this.shiftCards(),1100)
         },
         select:function(index){
-            console.log(this.selected)
-            if(this.cardcolor[index]!='green'){
-                if(this.cards[this.hand[index]].cost<=this.gold){
-                    this.gold=this.gold-this.cards[this.hand[index]].cost
-                    this.cardcolor[index]='green'
-                    this.selected.push(index)
-                }
-            }
-            else
-            {
-                this.gold=this.gold+this.cards[this.hand[index]].cost
-                if(this.round=='Fight'){
+            if(this.cardcolor[index]=='green'){
+                //unselecting card
+                this.gold+=this.cards[this.hand[index]].cost
+                this.selected=this.removeElement(this.selected,index)
+                if(this.round=="Fight"){
                     this.cardcolor[index]='gray'
-                    this.selected=this.removeElement(this.selected,index)
                 }
                 else
                 {
                     this.cardcolor[index]='coral'
-                    this.selected=this.removeElement(this.selected,index)
+                }
+            }
+            else
+            {
+                //Selecting new card
+                if(this.round=="Fight"){
+                    if(this.cards[this.hand[index]].cost<=this.gold){
+                       this.gold=this.gold-this.cards[this.hand[index]].cost
+                       this.cardcolor[index]='green'
+                       this.selected.push(index)
+                    }
+                }
+                else
+                {
+                    //first selection for buy round
+                    if(this.selected.length==0){
+                        if(this.cards[this.hand[index]].cost<=this.gold){
+                            this.gold=this.gold-this.cards[this.hand[index]].cost
+                            this.cardcolor[index]='green'
+                            this.selected.push(index)
+                        }
+                    }
+                    else
+                    {
+                        //second selection for buy round
+                        let totalgold=this.cards[this.hand[this.selected[0]]].cost+this.gold
+                        if(this.cards[this.hand[index]].cost<=totalgold){
+                            let cardcolorkeys=Object.keys(this.cardcolor)
+                            cardcolorkeys.forEach(element => {
+                                this.cardcolor[element]='coral'
+                            });
+                            this.gold+=this.cards[this.hand[this.selected[0]]].cost
+                            this.gold=this.gold-this.cards[this.hand[index]].cost
+                            this.cardcolor[index]='green'
+                            this.selected=[index]
+                        }
+                    }
                 }
             }
         },
@@ -168,10 +196,15 @@ export default {
                         this.timer=setInterval(()=>{
                             this.loadbar--
                         },120)
+                    setTimeout(()=>{
+                        this.selected.forEach(element => {
+                            this.gold=this.gold+this.cards[hand[element]].cost
+                        });
+                    },12000)
                 }
                 else
                 {
-                    this.gold=this.gold+5
+                    //this.gold=this.gold+5
                     this.selected=[]
                     this.round='Fight'
                     this.roundChange()
@@ -183,10 +216,12 @@ export default {
                             this.loadbar--
                         },120)
                     },1000)
+                    setTimeout(()=>{
+                        this.selected.forEach(element => {
+                            this.gold=this.gold+this.cards[this.hand[element]].cost
+                        });
+                    },12000)
                 }
-                
-                
-                
             })
         },
         buyhandle:function(){
@@ -199,9 +234,14 @@ export default {
                     this.loadbar=100
                     clearInterval(this.timer)
                     this.timer=setInterval(()=>{
-                    this.loadbar--
+                        this.loadbar--
                     },120)
                 },1000)
+                setTimeout(()=>{
+                        this.selected.forEach(element => {
+                            this.gold=this.gold+this.cards[this.hand[element]].cost
+                        });
+                    },12000)
                 
             })
         },
@@ -230,13 +270,21 @@ export default {
         },
         victory:function(){
             socket.socket.on('victory',data=>{
+                console.log("vicotryyy")
                 alert("You win!")
-                this.$router.go('/')
+                this.$router.push('/')
+            })
+        },
+        lostgame:function(){
+            socket.socket.on('lost',data=>{
+                alert("You lost")
+                this.$router.push('/')
             })
         },
         surrender:function(){
             console.log('sent surrender')
-            socket.socket.emit('surrender')
+            //socket.socket.emit('surrender')
+            this.$router.push('/')
         }
 
     },
@@ -246,6 +294,7 @@ export default {
         this.setOwnID()
         this.playerstats()
         this.victory()
+        this.lostgame()
     }
 }
 </script>
