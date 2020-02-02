@@ -37,11 +37,11 @@
         </div>
         <div id="stats">
             <div class="columns">
-            Player2 <br>
-            Gold:{{player2.gold}} <br>
-            Life:{{player2.life}} <br>
-            Deck:{{player2.deck}} <br>
-            Graveyard:{{player2.graveyard}}
+            <p>Player2</p>
+            <img class="staticons"  :src='icons.Coin.url' style="width:20px !important;height:20px !important;"></img>Gold:{{player2.gold}} <br>
+            <img class="staticons"  :src='icons.Life.url' style="width:20px !important;height:20px !important;"></img>Life:{{player2.life}} <br>
+            <img class="staticons"  :src='icons.Deck.url' style="width:20px !important;height:20px !important;">Deck:{{player2.deck}} <br>
+            <img class="staticons"  :src='icons.Graveyard.url' style="width:20px !important;height:20px !important;">Graveyard:{{player2.graveyard}}
             </div>
             <div class="columns">
 
@@ -52,7 +52,6 @@
         </div>
         <div id="history">
             <div class="columns">
-
             </div>
             <div class="columns">
 
@@ -60,7 +59,6 @@
             <div class="columns">
                 
             </div>
-            <button v-on:click="surrender">Surrender</button>
         </div>
     </div>
 
@@ -68,12 +66,15 @@
 <script>
 let socket=require('../socketmanager.js')
 let cardbase=require('../clientcards.js').Cards
+let icons=require('../icons.js').Icons
 export default {
     data: function(){
         return{
+            icons:icons,
             shift:'translateX(0px)',
             round:'Fight',
-            cardcolor:{0:'gray',
+            cardcolor:{
+                    0:'gray',
                     1:'gray',
                     2:'gray'},
             selected:[],
@@ -305,6 +306,13 @@ export default {
     height:100%;
 }
 
+.staticons{
+    float:left;
+    width:10px;
+    height:50px;
+}
+
+
 h3{
     margin:0px;
 }
@@ -350,6 +358,7 @@ h3{
 #stats{
     height:30%;
     background: olive;
+    font-size: 20px;
 }
 
 .ownstat{
