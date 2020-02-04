@@ -31,14 +31,15 @@
             <progress id="timebar" max="100" :value="loadbar" > 70% </progress>
             <h3>{{round}}round</h3>
             <button id="responsebutton" v-on:click="sendResponse">Send response</button>
-            <span class="ownstat">Life: {{life}}</span><br>
-            <span class="ownstat">Gold: {{gold}}</span><br>
-            
+            <div id="ownstatholder">
+                <img class="staticons" :src='icons.Life.url' style="width:20px !important;height:20px !important;float:left !important"><span class="ownstatlife">Life: {{life}}</span><br><br>
+                <img class="staticons" :src='icons.Coin.url' style="width:20px !important;height:20px !important;float:left !important"><span class="ownstatlife">Gold: {{gold}}</span>
+            </div>
         </div>
         <div id="stats">
             <div class="columns">
             <p>Player2</p>
-            <img class="staticons"  :src='icons.Coin.url' style="width:20px !important;height:20px !important;"></img>Gold:{{player2.gold}} <br>
+            <img class="staticons"  :src='icons.Coin.url' style="width:20px !important;height:20px !important;float:left"></img>Gold:{{player2.gold}} <br>
             <img class="staticons"  :src='icons.Life.url' style="width:20px !important;height:20px !important;"></img>Life:{{player2.life}} <br>
             <img class="staticons"  :src='icons.Deck.url' style="width:20px !important;height:20px !important;">Deck:{{player2.deck}} <br>
             <img class="staticons"  :src='icons.Graveyard.url' style="width:20px !important;height:20px !important;">Graveyard:{{player2.graveyard}}
@@ -312,6 +313,15 @@ export default {
     height:50px;
 }
 
+.ownstatlife{
+    float:left;
+    display: block;
+}
+
+#ownstatholder{
+    float:left;
+    width:40%;
+}
 
 h3{
     margin:0px;
