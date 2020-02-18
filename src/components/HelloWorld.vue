@@ -52,13 +52,19 @@
             </div>
         </div>
         <div id="history">
-            <div class="columns">
+            <div class="historyheader">
+                    History
             </div>
-            <div class="columns">
+            <div class="historycolumns">
+                <span>Attack:10</span>
+                <span>Defense:5</span>
+                <div v-for="cardid in testcard">
+                    <img id="kep" :src='cards[cardid].url' style="width:50px !important;"></img>
+                </div><br>
+                <span>Lost Life:10</span>
+            </div>
+            <div class="historycolumns">
 
-            </div>
-            <div class="columns">
-                
             </div>
         </div>
     </div>
@@ -71,6 +77,8 @@ let icons=require('../icons.js').Icons
 export default {
     data: function(){
         return{
+            testcard:[1,1,3],
+            testcard2:[2,2],
             icons:icons,
             shift:'translateX(0px)',
             round:'Fight',
@@ -306,7 +314,27 @@ export default {
     float:left;
     height:100%;
 }
+.historycolumns{
+    width:50%;
+    float:left;
+    height:90%;
+}
+.historycolumns span{
+    display:block;
+    text-align: center;
+    font-size:20px;;
+}
+.historycolumns img{
+    height:50px;
+    float:left;
+    margin-left:5%;
+}
+.historyheader{
+    height:10%;
+    background-color: brown;
+    text-align: center;
 
+}
 .staticons{
     float:left;
     width:10px;
