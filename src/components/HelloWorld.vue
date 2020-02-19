@@ -56,15 +56,20 @@
                     History
             </div>
             <div class="historycolumns">
-                <span>Attack:10</span>
-                <span>Defense:5</span>
-                <div v-for="cardid in testcard">
-                    <img id="kep" :src='cards[cardid].url' style="width:50px !important;"></img>
+                <span>Attack:{{ownhistorystat.attack}}</span>
+                <span>Defense:{{ownhistorystat.defense}}</span>
+                <div v-for="cardid in ownhistory">
+                    <img id="kep" :src='cards[cardid].url' style="width:40px !important;"></img>
                 </div><br>
-                <span>Lost Life:10</span>
+                <span>Damage:{{ownhistorystat.damage}}</span>
             </div>
             <div class="historycolumns">
-
+                <span>Attack:{{opponenthistorystat.attack}}</span>
+                <span>Defense:{{opponenthistorystat.defense}}</span>
+                <div v-for="cardid in opponenthistory">
+                    <img id="kep" :src='cards[cardid].url' style="width:40px !important;"></img>
+                </div><br>
+                <span>Damage:{{opponenthistorystat.damage}}</span>
             </div>
         </div>
     </div>
@@ -77,8 +82,16 @@ let icons=require('../icons.js').Icons
 export default {
     data: function(){
         return{
-            testcard:[1,1,3],
-            testcard2:[2,2],
+            ownhistory:[1,1,3],
+            opponenthistory:[2,2],
+            ownhistorystat:{"attack":2,
+                            "defense":2,
+                            "damage":2
+                            },
+            opponenthistorystat:{"attack":2,
+                                 "defense":2,
+                                 "damage":2
+            },
             icons:icons,
             shift:'translateX(0px)',
             round:'Fight',
@@ -295,6 +308,33 @@ export default {
             console.log('sent surrender')
             //socket.socket.emit('surrender')
             this.$router.push('/')
+        },
+        history:function(){
+            socket.socket.on('history',data=>{
+                if(data.p1.id==socket.socket.id){
+                    this.ownhistory=data.p1.deck
+                    this.ownhistorystat.attack=data.p1.attack
+                    this.ownhistorystat.defense=data.p1.defense
+                    this.ownhistorystat.damage=data.p1.damage
+
+                    this.opponenthistory=data.p2.deck
+                    this.opponenthistorystat.attack=data.p2.attack
+                    this.opponenthistorystat.defense=data.p2.defense
+                    this.opponenthistorystat.damage=data.p2.damage
+                }
+                else
+                {
+                    this.ownhistory=data.p2.deck
+                    this.ownhistorystat.attack=data.p2.attack
+                    this.ownhistorystat.defense=data.p2.defense
+                    this.ownhistorystat.damage=data.p2.damage
+
+                    this.opponenthistory=data.p1.deck
+                    this.opponenthistorystat.attack=data.p1.attack
+                    this.opponenthistorystat.defense=data.p1.defense
+                    this.opponenthistorystat.damage=data.p1.damage
+                }
+            })
         }
 
     },
@@ -305,6 +345,7 @@ export default {
         this.playerstats()
         this.victory()
         this.lostgame()
+        this.history()
     }
 }
 </script>
@@ -325,7 +366,7 @@ export default {
     font-size:20px;;
 }
 .historycolumns img{
-    height:50px;
+    height:40px;
     float:left;
     margin-left:5%;
 }
