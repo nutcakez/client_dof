@@ -30,7 +30,7 @@
             </div>
             <progress id="timebar" max="100" :value="loadbar" > 70% </progress>
             <h3>{{round}}round</h3>
-            <button id="responsebutton" v-on:click="sendResponse">Send response</button>
+            <b-button v-on:click="sendResponse" variant="danger">Button</b-button>
             <div id="ownstatholder">
                 <img class="staticons" :src='icons.Life.url' style="width:20px !important;height:20px !important;float:left !important"><span class="ownstatlife">Life: {{life}}</span><br><br>
                 <img class="staticons" :src='icons.Coin.url' style="width:20px !important;height:20px !important;float:left !important"><span class="ownstatlife">Gold: {{gold}}</span>
@@ -44,12 +44,7 @@
             <img class="staticons"  :src='icons.Deck.url' style="width:20px !important;height:20px !important;">Deck:{{player2.deck}} <br>
             <img class="staticons"  :src='icons.Graveyard.url' style="width:20px !important;height:20px !important;">Graveyard:{{player2.graveyard}}
             </div>
-            <div class="columns">
 
-            </div>
-            <div class="columns">
-
-            </div>
         </div>
         <div id="history">
             <div class="historyheader">
@@ -71,11 +66,14 @@
                 </div><br>
                 <span>Damage:{{opponenthistorystat.damage}}</span>
             </div>
+            
         </div>
     </div>
 
 </template>
 <script>
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 let socket=require('../socketmanager.js')
 let cardbase=require('../clientcards.js').Cards
 let icons=require('../icons.js').Icons
@@ -444,7 +442,7 @@ h3{
     float:left;
     font-weight: bold;
 }
-@media screen and (max-height: 560px) {
+@media screen and (max-height: 640px) {
     .card {
       background-color: lightgreen;
       font-size: small;

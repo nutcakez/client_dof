@@ -1,14 +1,12 @@
 <template>
-
-
   <div id="home">
-    my home
-   <router-link to="/test">Go to game</router-link><br>
-   {{alma}}
-   <ul>
-      <li v-on:click="joinroom(room.roomid)"  v-for="room in rooms">{{ room.roomid }} -- {{ room.users}} </li>
-  </ul>
-  <button v-on:click="CreateNewRoom">Make room</button>
+
+    <router-link to="/test">Go to game</router-link><br>
+    <button :class="buttonclass" v-on:click="CreateNewRoom">{{btnText}}</button>
+    <ul class="list-group">
+        <li class="list-group-item" v-on:click="joinroom(room.roomid)"  v-for="room in rooms">{{ room.roomid }}</li>
+    </ul>
+    
   </div>
 </template>
 
@@ -17,17 +15,20 @@
 // @ is an alias to /src
 let socket=require('../socketmanager.js').socket
 export default {
-  name: 'home',
   data:function(){
     return{
       rooms:[],
-      alma:'alma',
-      stuffs:[]
+      text:"alma",
+      btnText:"Create Game",
+      buttonclass:"btn btn-primary btn-block"
     }
   },
   methods:{
     CreateNewRoom:function(){
+      this.btnText="Waiting for a player to join";
+      this.buttonclass="btn btn-info btn-block"
       socket.emit('CreateNewRoom');
+      
     },
     updatearray:function(data){
       this.rooms=data;
