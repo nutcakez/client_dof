@@ -30,19 +30,26 @@
             </div>
             <progress id="timebar" max="100" :value="loadbar" > 70% </progress>
             <h3>{{round}}round</h3>
-            <b-button v-on:click="sendResponse" variant="danger">Button</b-button>
-            <div id="ownstatholder">
-                <img class="staticons" :src='icons.Life.url' style="width:20px !important;height:20px !important;float:left !important"><span class="ownstatlife">Life: {{life}}</span><br><br>
-                <img class="staticons" :src='icons.Coin.url' style="width:20px !important;height:20px !important;float:left !important"><span class="ownstatlife">Gold: {{gold}}</span>
-            </div>
+            <b-button class="btn-lg" v-on:click="sendResponse" variant="success">Küldés</b-button>
+
         </div>
         <div class="container">
             <div class="row">
                 <div class="col-6">
-                One of three columns
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">HP</li>
+                        <li class="list-group-item">Gold</li>
+                        <li class="list-group-item">Hand</li>
+                        <li class="list-group-item">Deck</li>
+                    </ul>
                 </div>
                 <div class="col-6">
-                One of three columns
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">HP</li>
+                        <li class="list-group-item">Gold</li>
+                        <li class="list-group-item">Hand</li>
+                        <li class="list-group-item">Deck</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -371,7 +378,7 @@ export default {
 }
 .historyheader{
     height:10%;
-    background-color: brown;
+    background-color: yellowgreen;
     text-align: center;
 
 }
@@ -381,18 +388,9 @@ export default {
     height:50px;
 }
 
-.ownstatlife{
-    float:left;
-    display: block;
-}
-
-#ownstatholder{
-    float:left;
-    width:40%;
-}
-
 h3{
     margin:0px;
+    padding-bottom: 5px;
 }
 
 #responsebutton{
@@ -455,6 +453,10 @@ h3{
     background-color: greenyellow;
 }
 .col-6{
+    background-color:red;
+}
+
+.list-group-item{
     background-color:red;
 }
 @media screen and (max-height: 640px) {
