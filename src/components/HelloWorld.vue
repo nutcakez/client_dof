@@ -36,16 +36,17 @@
                 <img class="staticons" :src='icons.Coin.url' style="width:20px !important;height:20px !important;float:left !important"><span class="ownstatlife">Gold: {{gold}}</span>
             </div>
         </div>
-        <div id="stats">
-            <div class="columns">
-            <p>Player2</p>
-            <img class="staticons"  :src='icons.Coin.url' style="width:20px !important;height:20px !important;float:left"></img>Gold:{{player2.gold}} <br>
-            <img class="staticons"  :src='icons.Life.url' style="width:20px !important;height:20px !important;"></img>Life:{{player2.life}} <br>
-            <img class="staticons"  :src='icons.Deck.url' style="width:20px !important;height:20px !important;">Deck:{{player2.deck}} <br>
-            <img class="staticons"  :src='icons.Graveyard.url' style="width:20px !important;height:20px !important;">Graveyard:{{player2.graveyard}}
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                One of three columns
+                </div>
+                <div class="col-6">
+                One of three columns
+                </div>
             </div>
-
         </div>
+        
         <div id="history">
             <div class="historyheader">
                     History
@@ -80,15 +81,15 @@ let icons=require('../icons.js').Icons
 export default {
     data: function(){
         return{
-            ownhistory:[1,1,3],
-            opponenthistory:[2,2],
-            ownhistorystat:{"attack":2,
-                            "defense":2,
-                            "damage":2
+            ownhistory:[],
+            opponenthistory:[],
+            ownhistorystat:{"attack":0,
+                            "defense":0,
+                            "damage":0
                             },
-            opponenthistorystat:{"attack":2,
-                                 "defense":2,
-                                 "damage":2
+            opponenthistorystat:{"attack":0,
+                                 "defense":0,
+                                 "damage":0
             },
             icons:icons,
             shift:'translateX(0px)',
@@ -99,7 +100,7 @@ export default {
                     2:'gray'},
             selected:[],
             cards:cardbase,
-            hand:[0,1,2],
+            hand:[0,0,0],
             life:20,
             gold:5,
             deck:3,
@@ -441,6 +442,20 @@ h3{
 .ownstat{
     float:left;
     font-weight: bold;
+}
+.row{
+    height:30%;
+    width:100%;
+    background-color: rgb(173, 179, 165);
+    margin:0 0 0 0;
+}
+.container{
+    padding:0 0 0 0;
+    display:inline;
+    background-color: greenyellow;
+}
+.col-6{
+    background-color:red;
 }
 @media screen and (max-height: 640px) {
     .card {

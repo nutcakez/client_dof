@@ -5,4 +5,3 @@ const socket = cardmanager('https://dof-test.herokuapp.com');
 //'http://localhost:2000'
 
 exports.socket=socket
-exports.alma="pew"
