@@ -36,19 +36,37 @@
         <div class="container">
             <div class="row">
                 <div class="col-6">
+                    Saját
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">HP</li>
-                        <li class="list-group-item">Gold</li>
-                        <li class="list-group-item">Hand</li>
-                        <li class="list-group-item">Deck</li>
+                        <li class="list-group-item">
+                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Life"].url'>HP: {{life}}
+                        </li>
+                        <li style="display:inline-block" class="list-group-item">
+                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Coin"].url'></img>Gold: {{gold}}
+                        </li>
+                        <li class="list-group-item">
+                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Deck"].url'></img>Deck: {{deck}}
+                        </li>
+                        <li class="list-group-item">
+                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Graveyard"].url'>Graveyard: {{graveyard}}
+                        </li>
                     </ul>
                 </div>
                 <div class="col-6">
+                    Ellenfél
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">HP</li>
-                        <li class="list-group-item">Gold</li>
-                        <li class="list-group-item">Hand</li>
-                        <li class="list-group-item">Deck</li>
+                        <li class="list-group-item">
+                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Life"].url'>HP: {{player2.life}}
+                        </li>
+                        <li style="display:inline-block" class="list-group-item">
+                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Coin"].url'></img>Gold: {{player2.gold}}
+                        </li>
+                        <li class="list-group-item">
+                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Deck"].url'></img>Deck: {{player2.deck}}
+                        </li>
+                        <li class="list-group-item">
+                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Graveyard"].url'>Graveyard: {{player2.graveyard}}
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -119,7 +137,7 @@ export default {
                 gold:5,
                 life:20,
                 deck:3,
-                graveyard:3
+                graveyard:0
             }
 
         }
@@ -453,11 +471,11 @@ h3{
     background-color: greenyellow;
 }
 .col-6{
-    background-color:red;
+    background-color:lightblue;
 }
 
 .list-group-item{
-    background-color:red;
+    background-color:lightblue;
 }
 @media screen and (max-height: 640px) {
     .card {
