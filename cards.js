@@ -13,7 +13,7 @@ let Cards={
     },
     2:{
         'name':'Barricade',
-        'life':4,
+        'life':5,
         'attack':1,
         'cost':2
     },
