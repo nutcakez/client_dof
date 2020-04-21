@@ -1,7 +1,7 @@
 <template>
   <div id="home">
 
-    <router-link to="/test">Go to game</router-link><br>
+    
     <button type="button" style="width:100%" v-on:click="rules" class="btn  btn-info" >Rules</button>
     <button :class="buttonclass" v-on:click="CreateNewRoom">{{btnText}}</button>
     <ul class="list-group">
@@ -29,7 +29,7 @@ export default {
       this.btnText="Waiting for a player to join";
       this.buttonclass="btn btn-info btn-block"
       socket.emit('CreateNewRoom');
-      
+      //<router-link to="/test">Go to game</router-link><br>
     },
     updatearray:function(data){
       this.rooms=data;
