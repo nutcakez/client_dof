@@ -30,7 +30,7 @@
             </div>
             <progress id="timebar" max="100" :value="loadbar" > 70% </progress>
             <h3>{{round}}round</h3>
-            <b-button class="btn-lg" v-on:click="sendResponse" variant="success">Küldés</b-button>
+            <b-button class="btn-sm" v-on:click="sendResponse" variant="success">Küldés</b-button>
 
         </div>
         <div class="container">
@@ -79,18 +79,18 @@
             <div class="historycolumns">
                 <span>Attack:{{ownhistorystat.attack}}</span>
                 <span>Defense:{{ownhistorystat.defense}}</span>
-                <div v-for="cardid in ownhistory">
-                    <img id="kep" :src='cards[cardid].url' style="width:40px !important;"></img>
-                </div><br>
-                <span>Damage:{{ownhistorystat.damage}}</span>
+                <div style="height:40px;width:100%;" >
+                    <img v-for="cardid in ownhistory" id="kep" :src='cards[cardid].url' style="width:40px !important;float:left;"></img>
+                </div>
+                <div><span>Damage:{{ownhistorystat.damage}}</span></div>
             </div>
             <div class="historycolumns">
                 <span>Attack:{{opponenthistorystat.attack}}</span>
                 <span>Defense:{{opponenthistorystat.defense}}</span>
-                <div v-for="cardid in opponenthistory">
-                    <img id="kep" :src='cards[cardid].url' style="width:40px !important;"></img>
-                </div><br>
-                <span>Damage:{{opponenthistorystat.damage}}</span>
+                <div style="height:40px;width:100%;" >
+                    <img v-for="cardid in opponenthistory" id="kep" :src='cards[cardid].url' style="width:40px !important;float:left;"></img>
+                </div>
+                <div><span>Damage:{{opponenthistorystat.damage}}</span></div>
             </div>
             
         </div>
@@ -106,8 +106,8 @@ let icons=require('../icons.js').Icons
 export default {
     data: function(){
         return{
-            ownhistory:[],
-            opponenthistory:[],
+            ownhistory:[1],
+            opponenthistory:[2,3,4],
             ownhistorystat:{"attack":0,
                             "defense":0,
                             "damage":0
@@ -443,6 +443,7 @@ h3{
 #kep{
     width: 100%;
     max-height: 100%;
+    border-radius: 8px;
 }
 .cardpic{
     width:100%;
