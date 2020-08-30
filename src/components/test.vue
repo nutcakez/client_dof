@@ -1,44 +1,23 @@
 <template>
     <div class="container">
-        <div class="row cards">
-            <div class="col-4">
-            One of three columns
-            </div>
-            <div class="col-4">
-            One of three columns
-            </div>
-            <div class="col-4">
-            One of three columns
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-            One of three columns
-            </div>
-            <div class="col-4">
-            One of three columns
-            </div>
-            <div class="col-4">
-            One of three columns
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-            One of three columns
-            </div>
-            <div class="col-4">
-            One of three columns
-            </div>
-            <div class="col-4">
-            One of three columns
-            </div>
-        </div>
-
-</div>
+        
+    </div>
 </template>
 <script>
 export default {
-    
+    data:function(){
+            return{
+                potato:[]
+            }
+        },
+        methods:{
+            thisisonload:function(){
+                store.import
+            }
+        },
+        created(){
+            this.thisisonload()
+        }
 }
 </script>
 <style scoped>

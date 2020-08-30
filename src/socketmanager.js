@@ -1,6 +1,15 @@
 var cardmanager=require('./sockets.js');
 console.log(cardmanager)
-const socket = cardmanager('https://dof-test.herokuapp.com');
+let socket;
+if(process.env.NODE_ENV=="development")
+{
+    socket = cardmanager('http://localhost:2000')
+}
+else
+{
+    socket = cardmanager('https://dof-test.herokuapp.com');
+}
+
 //'https://dof-test.herokuapp.com'
 //'http://localhost:2000'
 
