@@ -29,7 +29,6 @@ export default {
       this.btnText="Waiting for a player to join";
       this.buttonclass="btn btn-info btn-block"
       socket.emit('CreateNewRoom');
-      //<router-link to="/test">Go to game</router-link><br>
     },
     updatearray:function(data){
       this.rooms=data;
