@@ -1,4 +1,5 @@
-
+www/
+android/
 package-lock.json
 node_modules/
 node_modules/yeast/README.md

@@ -3,7 +3,7 @@
         <div id="cardholder">
             <div class="card"  v-on:click="select(0)" v-bind:style="{ transform: shift, background:cardcolor[0] }">
                 <div class="cardpic" >
-                    <img id="kep" :src='cards[hand[0]].url'></img>
+                    <img id="kep" :src='cards[hand[0]].url'/>
                 </div>
                 <span>{{cards[hand[0]].name}}</span><br>
                 <span>Támadás: {{cards[hand[0]].attack}}</span><br>
@@ -12,7 +12,7 @@
             </div>
             <div class="card" v-on:click="select(1)" v-bind:style="{ transform: shift, background:cardcolor[1] }">
                 <div class="cardpic">
-                    <img id="kep" :src='cards[hand[1]].url'></img>
+                    <img id="kep" :src='cards[hand[1]].url'/>
                 </div>
                 <span>{{cards[hand[1]].name}}</span><br>
                 <span>Támadás: {{cards[hand[1]].attack}}</span><br>
@@ -21,7 +21,7 @@
             </div>
             <div class="card" v-on:click="select(2)"  v-bind:style="{ transform: shift, background:cardcolor[2] }">
                  <div class="cardpic">
-                     <img id="kep" :src='cards[hand[2]].url'></img>
+                     <img id="kep" :src='cards[hand[2]].url'/>
                  </div>
                  <span>{{cards[hand[2]].name}}</span><br>
                  <span>Támadás: {{cards[hand[2]].attack}}</span><br>
@@ -31,7 +31,7 @@
             <progress id="timebar" max="100" :value="loadbar" > 70% </progress>
             <h3>{{round}}round</h3>
             <b-button class="btn-sm" v-on:click="sendResponse" variant="success">Küldés</b-button>
-
+            <b-button class="btn-sm" v-on:click="sendResponse" variant="success">Feladás</b-button>
         </div>
         <div class="container">
             <div class="row">
@@ -42,10 +42,10 @@
                             <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Life"].url'>HP: {{life}}
                         </li>
                         <li style="display:inline-block" class="list-group-item">
-                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Coin"].url'></img>Gold: {{gold}}
+                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Coin"].url'/>Gold: {{gold}}
                         </li>
                         <li class="list-group-item">
-                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Deck"].url'></img>Deck: {{deck}}
+                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Deck"].url'/>Deck: {{deck}}
                         </li>
                         <li class="list-group-item">
                             <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Graveyard"].url'>Graveyard: {{graveyard}}
@@ -59,10 +59,10 @@
                             <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Life"].url'>HP: {{player2.life}}
                         </li>
                         <li style="display:inline-block" class="list-group-item">
-                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Coin"].url'></img>Gold: {{player2.gold}}
+                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Coin"].url'>Gold: {{player2.gold}}
                         </li>
                         <li class="list-group-item">
-                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Deck"].url'></img>Deck: {{player2.deck}}
+                            <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Deck"].url'>Deck: {{player2.deck}}
                         </li>
                         <li class="list-group-item">
                             <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Graveyard"].url'>Graveyard: {{player2.graveyard}}
@@ -80,7 +80,7 @@
                 <span>Attack:{{ownhistorystat.attack}}</span>
                 <span>Defense:{{ownhistorystat.defense}}</span>
                 <div style="height:40px;width:100%;" >
-                    <img v-for="cardid in ownhistory" id="kep" :src='cards[cardid].url' style="width:40px !important;float:left;"></img>
+                    <img v-for="cardid in ownhistory" v-bind:key="cardid" id="kep" :src='cards[cardid].url' style="width:40px !important;float:left;">
                 </div>
                 <div><span>Damage:{{ownhistorystat.damage}}</span></div>
             </div>
@@ -88,7 +88,7 @@
                 <span>Attack:{{opponenthistorystat.attack}}</span>
                 <span>Defense:{{opponenthistorystat.defense}}</span>
                 <div style="height:40px;width:100%;" >
-                    <img v-for="cardid in opponenthistory" id="kep" :src='cards[cardid].url' style="width:40px !important;float:left;"></img>
+                    <img v-for="cardid in opponenthistory" v-bind:key="cardid" id="kep" :src='cards[cardid].url' style="width:40px !important;float:left;">
                 </div>
                 <div><span>Damage:{{opponenthistorystat.damage}}</span></div>
             </div>

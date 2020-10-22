@@ -5,7 +5,7 @@
     <button type="button" style="width:100%" v-on:click="rules" class="btn  btn-info" >Rules</button>
     <button :class="buttonclass" v-on:click="CreateNewRoom">{{btnText}}</button>
     <ul class="list-group">
-        <li class="list-group-item" v-on:click="joinroom(room.roomid)"  v-for="room in rooms">{{ room.roomid }}</li>
+        <li class="list-group-item" v-on:click="joinroom(room.roomid)"  v-for="room in rooms" v-bind:key="room">{{ room.roomid }}</li>
     </ul>
     
   </div>
