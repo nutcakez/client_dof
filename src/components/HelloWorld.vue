@@ -103,6 +103,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 let socket=require('../socketmanager.js')
 let cardbase=require('../clientcards.js').Cards
 let icons=require('../icons.js').Icons
+let language=require('../language').language
 export default {
     data: function(){
         return{
@@ -125,6 +126,7 @@ export default {
                     2:'gray'},
             selected:[],
             cards:cardbase,
+            language:language,
             hand:[0,0,0],
             life:20,
             gold:5,
