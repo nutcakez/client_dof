@@ -6,8 +6,8 @@
                     <img id="kep" :src='cards[hand[0]].url'/>
                 </div>
                 <span>{{cards[hand[0]].name}}</span><br>
-                <span>Támadás: {{cards[hand[0]].attack}}</span><br>
-                <span>Élet: {{cards[hand[0]].life}}</span><br>
+                <span>{{showtext('attack')}}: {{cards[hand[0]].attack}}</span><br>
+                <span>{{showtext('life')}}: {{cards[hand[0]].life}}</span><br>
                 <span>Ár: {{cards[hand[0]].cost}}</span>
             </div>
             <div class="card" v-on:click="select(1)" v-bind:style="{ transform: shift, background:cardcolor[1] }">
@@ -361,6 +361,9 @@ export default {
                     this.opponenthistorystat.damage=data.p1.damage
                 }
             })
+        },
+        showtext(whattype){
+            return this.language[this.langz][whattype]
         }
 
     },
@@ -372,7 +375,12 @@ export default {
         this.victory()
         this.lostgame()
         this.history()
-    }
+    },
+    computed: {
+        langz () {
+            return this.$store.state.language
+        }
+  }
 }
 </script>
 <style scoped>

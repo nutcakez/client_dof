@@ -16,7 +16,7 @@ let language={
     },
     'hun':{
         'life':'élet',
-        'attack':'támadűs',
+        'attack':'támadás',
         'cost':'ár',
         'round':'kör',
         'fight':'harc',
