@@ -6,14 +6,8 @@ const store = new Vuex.Store({
         language: "hun"
     },
     mutations: {
-        increment(state) {
-            state.count++
-        },
-        reset(state) {
-            state.count = 0;
-        },
-        disappoint(state) {
-            state.count = 9;
+        changeLanguage(state,lang) {
+            state.language=lang
         }
     },
     getters: {
