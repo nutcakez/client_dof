@@ -4,30 +4,34 @@ let language={
         'attack':'attack',
         'cost':'cost',
         'round':'round',
-        'fight':'fight',
+        'Fight':'fight',
         'buy':'buy',
         'own':'own',
-        'oppenent':'opponent',
+        'opponent':'opponent',
         'history':'History',
         'defense':'defense',
         'damage':'damage',
         'rules':'Rules',
-        'createnewroom':'Create new room'
+        'createnewroom':'Create new room',
+        'send':'send',
+        'surrender':'surrender'
     },
     'hun':{
         'life':'élet',
-        'attack':'támadűs',
+        'attack':'támadás',
         'cost':'ár',
         'round':'kör',
-        'fight':'harc',
+        'Fight':'harc',
         'buy':'vásár',
         'own':'saját',
-        'oppenent':'ellenfél',
+        'opponent':'ellenfél',
         'history':'Előzmény',
         'defense':'védelem',
         'damage':'sebzés',
         'rules':'Szabályok',
-        'createnewroom':'Új szoba készítése'
+        'createnewroom':'Új szoba készítése',
+        'send':'küldés',
+        'surrender':'feladás'
     }
 }
 

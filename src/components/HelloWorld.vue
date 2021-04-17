@@ -6,37 +6,37 @@
                     <img id="kep" :src='cards[hand[0]].url'/>
                 </div>
                 <span>{{cards[hand[0]].name}}</span><br>
-                <span>Támadás: {{cards[hand[0]].attack}}</span><br>
-                <span>Élet: {{cards[hand[0]].life}}</span><br>
-                <span>Ár: {{cards[hand[0]].cost}}</span>
+                <span>{{showtext('attack')}}: {{cards[hand[0]].attack}}</span><br>
+                <span>{{showtext('life')}}: {{cards[hand[0]].life}}</span><br>
+                <span>{{showtext('cost')}}: {{cards[hand[0]].cost}}</span>
             </div>
             <div class="card" v-on:click="select(1)" v-bind:style="{ transform: shift, background:cardcolor[1] }">
                 <div class="cardpic">
                     <img id="kep" :src='cards[hand[1]].url'/>
                 </div>
                 <span>{{cards[hand[1]].name}}</span><br>
-                <span>Támadás: {{cards[hand[1]].attack}}</span><br>
-                <span>Élet: {{cards[hand[1]].life}}</span><br>
-                <span>Ár: {{cards[hand[1]].cost}}</span>
+                <span>{{showtext('attack')}}: {{cards[hand[1]].attack}}</span><br>
+                <span>{{showtext('life')}}: {{cards[hand[1]].life}}</span><br>
+                <span>{{showtext('cost')}}: {{cards[hand[1]].cost}}</span>
             </div>
             <div class="card" v-on:click="select(2)"  v-bind:style="{ transform: shift, background:cardcolor[2] }">
                  <div class="cardpic">
                      <img id="kep" :src='cards[hand[2]].url'/>
                  </div>
                  <span>{{cards[hand[2]].name}}</span><br>
-                 <span>Támadás: {{cards[hand[2]].attack}}</span><br>
-                 <span>Élet: {{cards[hand[2]].life}}</span><br>
-                 <span>Ár: {{cards[hand[2]].cost}}</span>
+                 <span>{{showtext('attack')}}: {{cards[hand[2]].attack}}</span><br>
+                 <span>{{showtext('life')}}: {{cards[hand[2]].life}}</span><br>
+                 <span>{{showtext('cost')}}: {{cards[hand[2]].cost}}</span>
             </div>
             <progress id="timebar" max="100" :value="loadbar" > 70% </progress>
-            <h3>{{round}}round</h3>
-            <b-button class="btn-sm" v-on:click="sendResponse" variant="success">Küldés</b-button>
-            <b-button class="btn-sm" v-on:click="sendResponse" variant="success">Feladás</b-button>
+            <h3>{{showtext(this.round)}}{{showtext('round')}}</h3>
+            <b-button class="btn-sm" v-on:click="sendResponse" variant="success">{{showtext('send')}}</b-button>
+            <b-button class="btn-sm" v-on:click="sendResponse" variant="success">{{showtext('surrender')}}</b-button>
         </div>
         <div class="container">
             <div class="row">
                 <div class="col-6">
-                    Saját
+                    {{showtext('own')}}
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Life"].url'>HP: {{life}}
@@ -53,7 +53,7 @@
                     </ul>
                 </div>
                 <div class="col-6">
-                    Ellenfél
+                    {{showtext('opponent')}}
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <img style="padding-top:auto;float:left;height:20px;width:20px;" :src='icons["Life"].url'>HP: {{player2.life}}
@@ -74,19 +74,19 @@
         
         <div id="history">
             <div class="historyheader">
-                    History
+                    {{showtext('history')}}
             </div>
             <div class="historycolumns">
-                <span>Attack:{{ownhistorystat.attack}}</span>
-                <span>Defense:{{ownhistorystat.defense}}</span>
+                <span>{{showtext('attack')}}:{{ownhistorystat.attack}}</span>
+                <span>{{showtext('defense')}}:{{ownhistorystat.defense}}</span>
                 <div style="height:40px;width:100%;" >
                     <img v-for="cardid in ownhistory" v-bind:key="cardid" id="kep" :src='cards[cardid].url' style="width:40px !important;float:left;">
                 </div>
-                <div><span>Damage:{{ownhistorystat.damage}}</span></div>
+                <div><span>{{showtext('damage')}}:{{ownhistorystat.damage}}</span></div>
             </div>
             <div class="historycolumns">
-                <span>Attack:{{opponenthistorystat.attack}}</span>
-                <span>Defense:{{opponenthistorystat.defense}}</span>
+                <span>{{showtext('attack')}}:{{opponenthistorystat.attack}}</span>
+                <span>{{showtext('defense')}}:{{opponenthistorystat.defense}}</span>
                 <div style="height:40px;width:100%;" >
                     <img v-for="cardid in opponenthistory" v-bind:key="cardid" id="kep" :src='cards[cardid].url' style="width:40px !important;float:left;">
                 </div>
@@ -361,6 +361,9 @@ export default {
                     this.opponenthistorystat.damage=data.p1.damage
                 }
             })
+        },
+        showtext(whattype){
+            return this.language[this.langz][whattype]
         }
 
     },
@@ -372,7 +375,12 @@ export default {
         this.victory()
         this.lostgame()
         this.history()
-    }
+    },
+    computed: {
+        langz () {
+            return this.$store.state.language
+        }
+  }
 }
 </script>
 <style scoped>

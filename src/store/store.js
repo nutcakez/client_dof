@@ -6,6 +6,9 @@ const store = new Vuex.Store({
         language: "hun"
     },
     mutations: {
+        changeLanguage(state,lang) {
+            state.language=lang
+        }
     },
     getters: {
 
