@@ -1,13 +1,12 @@
-var cardmanager=require('./sockets.js');
-console.log(cardmanager)
+var socketLib=require('./sockets.js');
 let socket;
 if(process.env.NODE_ENV=="development")
 {
-    socket = cardmanager('http://localhost:2000')
+    socket = socketLib('http://localhost:2000')
 }
 else
 {
-    socket = cardmanager('https://dof-test.herokuapp.com');
+    socket = socketLib('https://dof-test.herokuapp.com');
 }
 
 //'https://dof-test.herokuapp.com'

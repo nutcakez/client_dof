@@ -41,7 +41,7 @@ export default {
     },
     gamestart:function(){
       socket.on('gamestart',()=>{
-        this.$router.push({name:'HelloWorld'})
+        this.$router.push({name:'gamepage'})
       })
     },
     joinroom:function(roomID){

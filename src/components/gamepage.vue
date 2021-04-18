@@ -99,7 +99,6 @@
 </template>
 <script>
 import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 let socket=require('../socketmanager.js')
 let cardbase=require('../clientcards.js').Cards
 let icons=require('../icons.js').Icons
