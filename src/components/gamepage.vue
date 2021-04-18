@@ -98,7 +98,6 @@
 
 </template>
 <script>
-import 'bootstrap/dist/css/bootstrap.css'
 let socket=require('../socketmanager.js')
 let cardbase=require('../clientcards.js').Cards
 let icons=require('../icons.js').Icons
