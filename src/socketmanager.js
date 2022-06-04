@@ -1,4 +1,5 @@
-var socketLib=require('./sockets.js');
+//var socketLib=require('./sockets.js');
+var socketLib=require('socket.io-client').io;
 let socket;
 if(process.env.NODE_ENV=="development")
 {

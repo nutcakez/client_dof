@@ -5,5 +5,11 @@ module.exports = {
         plugins: [
             new BundleAnalyzerPlugin()
         ]
+    },
+
+    publicPath: '',
+
+    pluginOptions: {
+      cordovaPath: 'src-cordova'
     }
 }
